@@ -1,6 +1,6 @@
 // @flow
 
-import 'babel-polyfill';
+//import 'babel-polyfill';
 
 import path from 'path';
 import Koa from 'koa';
@@ -62,5 +62,9 @@ export default () => {
     ],
   });
   pug.use(app);
+
+  router.get('/', async (ctx) => {
+    ctx.render('welcome/index');
+  })
   return app;
 };

@@ -4,3 +4,7 @@ dist
 flow-typed
 .tern-port
 *.sqlite
+cm
+tmp
+.vagrant
+Vagrantfile
