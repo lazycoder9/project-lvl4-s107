@@ -1,5 +1,5 @@
 {
-  "name": "koa-nodejs-application",
+  "name": "lazy-task-manager",
   "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
@@ -24,14 +24,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hexlet-boilerplates/nodejs-package.git"
+    "url": "git+https://github.com/lazycoder9/project-lvl4-s107.git"
   },
-  "author": "Kirill Mokevnin",
+  "author": "LazyCoder",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hexlet-boilerplates/nodejs-package/issues"
+    "url": "https://github.com/lazycoder9/project-lvl4-s107/issues"
   },
-  "homepage": "https://github.com/hexlet-boilerplates/nodejs-package#readme",
+  "homepage": "https://github.com/lazycoder9/project-lvl4-s107#readme",
   "dependencies": {
     "babel-cli": "*",
     "babel-core": "*",
