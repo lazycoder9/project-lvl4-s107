@@ -1,1 +1,2 @@
+init: gulp init
 web: yarn start

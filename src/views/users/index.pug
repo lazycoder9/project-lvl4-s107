@@ -8,8 +8,9 @@ block content
         th Email
         th Created At
     tbody
-      each user in users
-        tr
-          td= user.fullName
-          td= user.email
-          td= user.createdAt
+      if users
+        each user in users
+          tr
+            td= user.fullName
+            td= user.email
+            td= user.createdAt
