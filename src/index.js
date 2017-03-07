@@ -14,6 +14,7 @@ import session from 'koa-generic-session';
 import flash from 'koa-flash-simple';
 import _ from 'lodash';
 import methodOverride from 'koa-methodoverride';
+import rollbar from 'rollbar';
 
 import getWebpackConfig from '../webpack.config.babel';
 import addRoutes from './controllers';
@@ -63,8 +64,7 @@ export default () => {
   });
   pug.use(app);
 
-  router.get('/', async (ctx) => {
-    ctx.render('welcome/index');
-  })
+  app.use(rollbar.errorHandler('e6d974c48e184f71b51b5f5345bb5222'));
+
   return app;
 };
