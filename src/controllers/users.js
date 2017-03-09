@@ -3,7 +3,6 @@ import buildFormObj from '../lib/formObjectBuilder';
 export default (router, { User }) => {
   router
     .get('users', '/users', async (ctx) => {
-      User.sync();
       const users = await User.findAll();
       ctx.render('users', { users });
     })
