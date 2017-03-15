@@ -8,3 +8,4 @@ flow-typed
 npm-debug.log
 /.vagrant
 /cm/*.retry
+public

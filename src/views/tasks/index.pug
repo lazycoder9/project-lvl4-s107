@@ -1,0 +1,18 @@
+extends /layouts/application.pug
+
+block content
+  a.btn.btn-info(href=urlFor('newTask') role=button) Create new task
+  table.table.table-stripped
+    thead
+      tr
+        th ID
+        th Name
+        th Status
+    tbody
+      if tasks
+        each task in tasks
+          tr
+            td= task.id
+            td
+              a(href='/tasks/' + task.id)= task.name
+            td= task.status

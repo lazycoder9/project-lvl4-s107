@@ -1,6 +1,6 @@
 // @flow
 
-import 'babel-polyfill';
+//import 'babel-polyfill';
 
 import path from 'path';
 import Koa from 'koa';
@@ -49,6 +49,12 @@ export default () => {
   addRoutes(router, container);
   app.use(router.allowedMethods());
   app.use(router.routes());
+  app.use(async (ctx, next) => {
+    if (404 != ctx.status) {
+      return;
+    }
+    ctx.redirect('/not_found');
+  });
 
   const pug = new Pug({
     viewPath: path.join(__dirname, 'views'),
