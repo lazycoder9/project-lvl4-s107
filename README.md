@@ -13,3 +13,11 @@ make install
 Created postgresql-shallow-45831 as DATABASE_URL
 
 [validate.js](http://validatejs.org/)
+
+```
+| Simple           | Complex       |
+|------------------|---------------|
+| Constant         | Variable      |
+| Data             | Object (Hard) |
+| Recursion (Hard) | Loop          |
+```
