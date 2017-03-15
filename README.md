@@ -15,7 +15,7 @@ Created postgresql-shallow-45831 as DATABASE_URL
 [validate.js](http://validatejs.org/)
 
 ```
-| Simple&nbsp           | Complex       |
+| Simple           | Complex       |
 |------------------|---------------|
 | Constant         | Variable      |
 | Data             | Object (Hard) |
