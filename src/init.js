@@ -10,10 +10,12 @@ export default async () => {
       model.associate(models);
     }
   }))
-    .then(async () => {
-      await Promise.all(Object.values(models).map(model => model.sync({ force: true })))
+    .then(async (values) => {
+      console.log(values);
+      await Promise.all(Object.values(models).map(model => model.sync({ force: true })));
     })
-    .then(() => {
+    .then((values) => {
+      console.log(values);
       models.Status.bulkCreate([
         {
           name: 'New',
@@ -28,7 +30,8 @@ export default async () => {
           name: 'Done',
         },
       ]);
-    });
+    })
+    .catch(err => console.log(err));
 
 
 };
