@@ -7,6 +7,7 @@ export default async () => {
   await Promise.all(Object.values(models).map(model => model.sync({ force: true })));
   await Promise.all(Object.values(models).map((model) => {
     if (model.associate) {
+      console.log(model);
       model.associate(models);
     }
     return;
