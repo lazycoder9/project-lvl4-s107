@@ -7,6 +7,11 @@ export default connect => connect.define('Tag', {
     unique: true,
   },
 }, {
+  classMethods: {
+    associate: function (models) {
+      models.Tag.belongsToMany(models.Task, { through: 'TaskTag' });
+    },
+  },
   freezeTableName: true,
   timestamps: false,
 });

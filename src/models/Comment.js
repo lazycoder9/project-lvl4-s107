@@ -6,5 +6,11 @@ export default connect => connect.define('Comment', {
     allowNull: false,
   },
 }, {
+  classMethods: {
+    associate: function (models) {
+      models.Comment.belongsTo(models.User);
+      models.Comment.belongsTo(models.Task);
+    },
+  },
   freezeTableName: true,
 });

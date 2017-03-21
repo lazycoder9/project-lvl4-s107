@@ -39,10 +39,8 @@ export default (router, { Task, User, Comment, Status, Tag }) => {
       const task = Task.build(form);
       try {
         await task.save();
-        tags.map((tag) => {
-          return Tag.findOne({ where: { name: tag } })
-            .then(async result => result ? await task.addTag(result) : await task.createTag({ name: tag }))
-        });
+        tags.map(tag => Tag.findOne({ where: { name: tag } })
+            .then(async result => (result ? await task.addTag(result) : await task.createTag({ name: tag }))));
         ctx.flash.set('Task has been created');
         ctx.redirect(router.url('tasks'));
       } catch (e) {

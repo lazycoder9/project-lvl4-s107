@@ -17,6 +17,15 @@ export default connect => connect.define('Task', {
       return status.dataValues.name;
     },
   },
+  classMethods: {
+    associate: function (models) {
+      models.Task.belongsTo(models.User, { as: 'creator' });
+      models.Task.belongsTo(models.User, { as: 'assignedTo' });
+      models.Task.belongsTo(models.Status);
+      models.Task.hasMany(models.Comment);
+      models.Task.belongsToMany(models.Tag, { through: 'TaskTag' });
+    },
+  },
   freezeTableName: true,
   timestamps: false,
 });

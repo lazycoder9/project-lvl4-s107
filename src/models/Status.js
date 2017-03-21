@@ -6,6 +6,11 @@ export default connect => connect.define('Status', {
     allowNull: false,
   },
 }, {
+  classMethods: {
+    associate: function (models) {
+      models.Status.hasMany(models.Task);
+    }
+  },
   freezeTableName: true,
   timestamps: false,
 });
