@@ -8,23 +8,23 @@ import getTaskTag from './TaskTag';
 export default (connect) => {
   const models = {
     User: getUser(connect),
+    Task: getTask(connect),
     Status: getStatus(connect),
-    Task: getTask(connect),    
     Tag: getTag(connect),
     Comment: getComment(connect),
     TaskTag: getTaskTag(connect),
   };
-  // User.hasMany(Task, { foreignKey: 'creatorId', as: 'createdTask' });
-  // User.hasMany(Task, { foreignKey: 'assignedToId', as: 'assignedTo' });
-  // User.hasMany(Comment);
-  // Task.belongsTo(User, { as: 'creator' });
-  // Task.belongsTo(User, { as: 'assignedTo' });
-  // Task.belongsTo(Status);
-  // Task.hasMany(Comment);
-  // Task.belongsToMany(Tag, { through: 'TaskTag' });
-  // Tag.belongsToMany(Task, { through: 'TaskTag' });
-  // Status.hasMany(Task);
-  // Comment.belongsTo(User);
-  // Comment.belongsTo(Task);
+  models.User.hasMany(models.Task, { foreignKey: 'creatorId', as: 'createdTask' });
+  models.User.hasMany(models.Task, { foreignKey: 'assignedToId', as: 'assignedTo' });
+  models.User.hasMany(models.Comment);
+  models.Task.belongsTo(models.User, { as: 'creator' });
+  models.Task.belongsTo(models.User, { as: 'assignedTo' });
+  models.Task.belongsTo(models.Status);
+  models.Task.hasMany(models.Comment);
+  models.Task.belongsToMany(models.Tag, { through: 'TaskTag' });
+  models.Tag.belongsToMany(models.Task, { through: 'TaskTag' });
+  models.Status.hasMany(models.Task);
+  models.Comment.belongsTo(models.User);
+  models.Comment.belongsTo(models.Task);
   return models;
 };

@@ -40,14 +40,5 @@ export default connect => connect.define("User", {
       return `${this.firstName} ${this.lastName}`;
     },
   },
-  classMethods: {
-    associate: async function (models) {
-      console.log('TRY TO ASSICIATE USER TO TASK AS CREATOR!');
-      await models.User.hasMany(models.Task, { foreignKey: 'creatorId', as: 'createdTask' });
-      console.log('TRY TO ASSICIATE USER TO TASK AS ASSIGNED!');
-      await models.User.hasMany(models.Task, { foreignKey: 'assignedToId', as: 'assignedTo' });
-      await models.User.hasMany(models.Comment);
-    },
-  },
   freezeTableName: true, // Model tableName will be the same as the model name
 });
