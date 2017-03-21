@@ -9,7 +9,8 @@ export default async () => {
   await models.Task.sync({ force: true });
   await models.Tag.sync({ force: true });
   await models.Comment.sync({ force: true });
-  await models.Stats.sync({ force: true });
+  await models.Status.sync({ force: true });
+  await models.TaskTag.sync({ force: true });
 
   /*await Promise.all(Object.values(models).map(model => model.sync({ force: true })))
     .then((values) => {
