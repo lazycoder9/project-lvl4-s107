@@ -1,0 +1,21 @@
+extends /layouts/application.pug
+
+block content
+  .container
+    table.table.table-stripped
+      tbody
+        tr
+          th ID
+            td= user.id
+        tr
+          th Name
+            td= user.fullName
+        tr
+          th Email
+            td= user.email
+
+  if (user.id == signedId)
+    form(action=`/user/${user.id}` method='post')
+      .form-group
+        input(type='hidden' name='_method' value='DELETE')
+        button(class='btn btn-danger') Delete profile

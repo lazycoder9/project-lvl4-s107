@@ -4,13 +4,11 @@ export default (router, { User, Task }) => {
   router
     .get('users', '/users', async (ctx) => {
       const users = await User.findAll();
-      const tasks = await Task.findAll({
-        where: {
-          creator: 1,
-        },
-      });
-      console.log(tasks);
       ctx.render('users', { users });
+    })
+    .get('user', '/user/:id', async (ctx) => {
+      const user = await User.findById(Number(ctx.params.id));
+      ctx.render('users/profile', { user, signedId: ctx.session.userId });
     })
     .get('newUser', '/users/new', (ctx) => {
       const user = User.build();
@@ -26,5 +24,14 @@ export default (router, { User, Task }) => {
       } catch (e) {
         ctx.render('users/new', { f: buildFormObj(user, e) });
       }
+    })
+    .delete('/user/:id', async (ctx) => {
+      const userId = Number(ctx.params.id);
+      User.destroy({
+        where: { id: userId },
+      });
+      ctx.flash.set('User has been deleted');
+      ctx.session = {};
+      ctx.redirect(router.url('root'));
     });
 };

@@ -1,23 +1,61 @@
 extends /layouts/application.pug
 
 block content
+  .container
+    table.table.table-stripped
+      tbody
+        tr
+          th ID
+            td= task.id
+        tr
+          th Name
+            td= task.name
+        tr
+          th Description
+            td= task.description
+        tr
+          th Creator
+            td= task.creator
+        tr
+          th Status
+            td= task.status
+            td
+              form.form-inline(action='/task', method='post')
+                - const value = f.object[property] === undefined ? '' : f.object[property]
+                .form-group(class=(f.errors[property] && 'has-danger'))
+                  label Change status
+                  select(name='statusId' class='form-control' value=`${value}`)
+                    each status in statuses
+                      option(value= status.id)= status.name
+                  input(type='hidden' name='_method' value='PATCH')
+                  input(type='hidden' name='taskId' value= task.id)
+                +button(f)
+
+
+        tr
+          th Assigned To
+            td= task.assignedTo
+        tr
+          th Tags
+            td
+              if tags
+                each tag in tags
+                  p= tag.name
+
+  +formFor(f, { url: '/comments/' + task.id, method: 'post' })
+    +input(f, 'content')
+    +button(f)
+
   table.table.table-stripped
+    thead
+      tr
+        th content
+        th Author
+        th Date
     tbody
-      tr
-        th ID
-          td= task.id
-      tr
-        th Name
-          td= task.name
-      tr
-        th Description
-          td= task.description
-      tr
-        th Creator
-          td= task.creator
-      tr
-        th Status
-          td= task.status
-      tr
-        th Assigned To
-          td= task.assignedTo
+      if comments
+        each comment in comments
+          tr
+            td= comment.content
+            td= comment.UserId
+            td= comment.createdAt

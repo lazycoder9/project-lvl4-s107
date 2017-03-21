@@ -1,33 +1,29 @@
 ---
-
-- hosts: all
+- name: install nodejs
+  hosts: all
+  gather_facts: yes
+  become: yes
   tasks:
-    - block:
-      - name: generate locale
-        locale_gen:
-          name: en_US.UTF-8
-          state: present
-        tags: [locale]
+    - name: add apt keys
+      apt_key: url={{ item }}
+      with_items:
+        - https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+        - https://dl.yarnpkg.com/debian/pubkey.gpg
 
-      - name: set locale
-        become: yes
-        shell: update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8
-        tags: [locale]
+    - name: add repos
+      apt_repository: repo={{ item }} update_cache=yes
+      with_items:
+        - deb https://deb.nodesource.com/node_7.x {{ ansible_distribution_release }} main
+        - deb https://dl.yarnpkg.com/debian/ stable main
 
-      - name: Install npm
-        apt:
-          name: npm
-          state: latest
-        become: yes
+    - name: install packages
+      apt: name={{ item }}
+      with_items:
+        - nodejs
+        - yarn
 
-      - name: Install Node
-        apt:
-          name: node
-          state: present
-        become: yes
-
-      - name: Install git
-        apt:
-          name: git
-          state: present
-        become: yes
+    - name: Install git
+       apt:
+         name: git
+         state: present
+      become: yes

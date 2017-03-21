@@ -40,5 +40,10 @@ export default connect => connect.define('User', {
       return `${this.firstName} ${this.lastName}`;
     },
   },
+  classMethods: {
+    associate: function (models) {
+      models.User.hasMany(models.Task);
+    },
+  },
   freezeTableName: true, // Model tableName will be the same as the model name
 });

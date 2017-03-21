@@ -4,5 +4,6 @@ block content
   +formFor(f, { url: urlFor('tasks'), method: 'post' })
     +input(f, 'name')
     +input(f, 'description')
-    +select(f, 'assignedTo', users)
+    +input(f, 'Tags')
+    +select(f, 'assignedToId', users)
     +button(f)

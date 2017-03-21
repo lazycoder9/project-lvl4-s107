@@ -1,6 +1,6 @@
 // @flow
 
-//import 'babel-polyfill';
+import 'babel-polyfill';
 
 import path from 'path';
 import Koa from 'koa';
@@ -49,8 +49,8 @@ export default () => {
   addRoutes(router, container);
   app.use(router.allowedMethods());
   app.use(router.routes());
-  app.use(async (ctx, next) => {
-    if (404 != ctx.status) {
+  app.use(async (ctx) => {
+    if (ctx.status !== 404) {
       return;
     }
     ctx.redirect('/not_found');
