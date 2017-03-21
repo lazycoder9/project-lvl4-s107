@@ -4,15 +4,15 @@ import getModels from './models';
 export default async () => {
   const models = getModels(connect);
 
-  await Promise.all(Object.values(models).map((model) => {
+  await Promise.all(Object.values(models).map(async (model) => {
     if (model.associate) {
       console.log(model);
-      model.associate(models);
+      await model.associate(models);
     }
   }))
-    .then(async (values) => {
-      console.log(values);
-      await Promise.all(Object.values(models).map(model => model.sync({ force: true })));
+    .then(async () => {
+      console.log('RELATIONS ARE FINISHED!');
+      await Promise.all(Object.values(models).map(async model => model.sync({ force: true })));
     })
     .then((values) => {
       console.log(values);
