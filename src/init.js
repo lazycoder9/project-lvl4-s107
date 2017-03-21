@@ -4,14 +4,14 @@ import getModels from './models';
 export default async () => {
   const models = getModels(connect);
 
-  await Promise.all(Object.values(models).map(model => model.sync({ force: true })))
+  await Promise.all(Object.values(models).map((model) => {
+    if (model.associate) {
+      console.log(model);
+      model.associate(models);
+    }
+  }))
     .then(async () => {
-      await Promise.all(Object.values(models).map((model) => {
-        if (model.associate) {
-          console.log(model);
-          model.associate(models);
-        }
-      }));
+      await Promise.all(Object.values(models).map(model => model.sync({ force: true })))
     })
     .then(() => {
       models.Status.bulkCreate([
