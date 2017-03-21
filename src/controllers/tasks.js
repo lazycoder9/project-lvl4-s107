@@ -16,7 +16,7 @@ export default (router, { Task, User, Comment, Status, Tag }) => {
       const tags = await task.getTags();
       const comment = Comment.build();
       const comments = await task.getComments({
-        order: 'createdAt DESC',
+        order: "createdAt DESC",
       });
       const creator = await task.getCreator();
       const assignedTo = await task.getAssignedTo();
