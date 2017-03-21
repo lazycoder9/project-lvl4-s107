@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 
-export default connect => connect.define('Task', {
+export default connect => connect.define("Task", {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
