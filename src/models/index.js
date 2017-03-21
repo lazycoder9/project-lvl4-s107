@@ -8,8 +8,8 @@ import getTaskTag from './TaskTag';
 export default (connect) => {
   const models = {
     User: getUser(connect),
-    Task: getTask(connect),
     Status: getStatus(connect),
+    Task: getTask(connect),    
     Tag: getTag(connect),
     Comment: getComment(connect),
     TaskTag: getTaskTag(connect),
