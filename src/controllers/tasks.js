@@ -8,7 +8,7 @@ const generateSearchQuery = (params, ctx) => {
     where[params.category] = ctx.session.userId;
   }
   if (params.status && params.status !== 'All') {
-    where.statusId = Number(params.status);
+    where["StatusId"] = Number(params.status);
   }
 
   return where;

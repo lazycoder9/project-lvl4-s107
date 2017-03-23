@@ -9,8 +9,6 @@ export default (router, { Tag }) => {
         const { data } = await getDataFromTask(task);
         return data;
       }));
-
-      console.log(tasks);
       ctx.render('tag', { tasks, tag });
     });
 };
