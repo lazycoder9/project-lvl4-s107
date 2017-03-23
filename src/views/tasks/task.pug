@@ -29,7 +29,7 @@ block content
                       option(value= status.id)= status.name
                   input(type='hidden' name='_method' value='PATCH')
                   input(type='hidden' name='taskId' value= task.id)
-                +button(f)
+                  button(class='btn btn-secondary') Set status
 
 
         tr
@@ -39,12 +39,20 @@ block content
           th Tags
             td
               if tags
-                each tag in tags
-                  p= tag.name
+                ul.list-inline
+                  each tag in tags
+                    li
+                      a(href=`/tag/${tag.id}`)= tag.name
+
+  form(action=`/task/${task.id}` method='post')
+    .form-group
+      input(type='hidden' name='_method' value='DELETE')
+      button(class='btn btn-danger') Delete task
 
   +formFor(f, { url: '/comments/' + task.id, method: 'post' })
-    +input(f, 'content')
-    +button(f)
+    +input(f, 'content', 'Comment')
+    .form-group
+      button(class='btn btn-primary') Add comment
 
   table.table.table-stripped
     thead

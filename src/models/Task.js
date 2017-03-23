@@ -3,7 +3,9 @@ import Sequelize from 'sequelize';
 export default connect => connect.define("Task", {
   name: {
     type: Sequelize.STRING,
-    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
   },
   description: Sequelize.TEXT,
   StatusId: {

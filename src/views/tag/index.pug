@@ -1,24 +1,8 @@
 extends /layouts/application.pug
 
 block content
-  .container
-    a.btn.btn-info(href=urlFor('newTask') role=button) Create new task
-
-
-    form.form-inline(action=urlFor('tasks'))
-      .form-group
-        select(name='category' class='form-control' value='category')
-          option All
-          option(value='creatorId') Created
-          option(value='assignedToId') Assigned to
-      .form-group
-        select(name='status' class='form-control' value='status')
-          option All
-          each status in statuses
-            option(value= status.id)= status.name
-      .form-group
-        button(class='btn btn-primary' type='submit') Search
-
+  h1= `Tasks with tag ${tag.name}`
+  
   table.table.table-stripped
     thead
       tr
@@ -46,5 +30,5 @@ block content
                   a(href='#')
                     span.glyphicon.glyphicon-edit(aria-hidden='true')
                 li
-                  a(href='№')
+                  a(href='#')
                     span.glyphicon.glyphicon-trash(aria-hidden='true')

@@ -1,9 +1,17 @@
 extends /layouts/application.pug
 
+
+
 block content
   +formFor(f, { url: urlFor('tasks'), method: 'post' })
-    +input(f, 'name')
-    +input(f, 'description')
-    +input(f, 'Tags')
+    +input(f, 'name', 'Name')
+    - const getInputName = (f, property) => `${f.name}[${property}]`
+    - const value = f.object[property] === undefined ? '' : f.object[property]
+    .form-group(class=(f.errors[property] && 'has-danger'))
+      label Description:
+      textarea(name='form[description]' class='form-control' rows=5 value=`${value}`)
+      if f.errors[property]
+        .form-control-feedback= f.errors[property].map(({ message }) => message).join('. ')
+    +input(f, 'Tags', 'Tags')
     +select(f, 'assignedToId', users)
-    +button(f)
+    +button(f, 'submit', 'Create task')
