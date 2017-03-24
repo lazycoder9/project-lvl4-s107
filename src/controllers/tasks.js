@@ -29,18 +29,20 @@ export default (router, { Task, User, Comment, Status, Tag }) => {
         }));
         const statuses = await Status.findAll();
         ctx.render('tasks', { tasks, statuses });
+      } else {
+        ctx.flash.set('You are not logged in');
+        ctx.redirect(router.url('root'));
       }
-      ctx.flash.set('You are not logged in');
-      ctx.redirect(router.url('root'));
     })
     .get('newTask', '/tasks/new', async (ctx) => {
       if (ctx.session.userId) {
         const task = Task.build();
         const users = await User.findAll();
         ctx.render('tasks/new', { f: buildFormObj(task), users });
+      } else {
+        ctx.flash.set('You are not logged in');
+        ctx.redirect(router.url('root'));
       }
-      ctx.flash.set('You are not logged in');
-      ctx.redirect(router.url('root'));
     })
     .get('task', '/tasks/:id', async (ctx) => {
       const task = await Task.findById(Number(ctx.params.id));
