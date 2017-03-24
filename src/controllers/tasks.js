@@ -17,22 +17,30 @@ const generateSearchQuery = (params, ctx) => {
 export default (router, { Task, User, Comment, Status, Tag }) => {
   router
     .get('tasks', '/tasks', async (ctx) => {
-      const { query } = url.parse(ctx.request.url, true);
-      console.log(query);
-      const search = generateSearchQuery(query, ctx);
-      console.log(search);
-      const rawTasks = await Task.findAll({ where: search });
-      const tasks = await Promise.all(rawTasks.map(async (task) => {
-        const { data } = await getDataFromTask(task);
-        return data;
-      }));
-      const statuses = await Status.findAll();
-      ctx.render('tasks', { tasks, statuses });
+      if (ctx.session.userId) {
+        const { query } = url.parse(ctx.request.url, true);
+        console.log(query);
+        const search = generateSearchQuery(query, ctx);
+        console.log(search);
+        const rawTasks = await Task.findAll({ where: search });
+        const tasks = await Promise.all(rawTasks.map(async (task) => {
+          const { data } = await getDataFromTask(task);
+          return data;
+        }));
+        const statuses = await Status.findAll();
+        ctx.render('tasks', { tasks, statuses });
+      }
+      ctx.flash.set('You are not logged in');
+      ctx.redirect(router.url('root'));
     })
     .get('newTask', '/tasks/new', async (ctx) => {
-      const task = Task.build();
-      const users = await User.findAll();
-      ctx.render('tasks/new', { f: buildFormObj(task), users });
+      if (ctx.session.userId) {
+        const task = Task.build();
+        const users = await User.findAll();
+        ctx.render('tasks/new', { f: buildFormObj(task), users });
+      }
+      ctx.flash.set('You are not logged in');
+      ctx.redirect(router.url('root'));
     })
     .get('task', '/tasks/:id', async (ctx) => {
       const task = await Task.findById(Number(ctx.params.id));
