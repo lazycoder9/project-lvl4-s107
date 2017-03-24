@@ -1,0 +1,143 @@
+.btn.btn-primary {
+	color: #e3f2fd;
+	background-color: #2196f3;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	border: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.task {
+	height: 200px;
+	margin: 10px;
+	position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background-color: #fff;
+  transition: all .2s ease-in-out;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+.task:hover {
+	transform: scale(1.03);
+	text-decoration: none;
+}
+
+.task-creator {
+	position: absolute;
+	color: #fff;
+	left: 0;
+	bottom: 0;
+	width: 50%;
+	height: 25%;
+	background-color: #673AB7;
+	padding: 5px;
+	text-decoration: none;
+}
+
+.task-assignedTo {
+	position: absolute;
+	right: 0;
+	color: #fff;
+	bottom: 0;
+	width: 50%;
+	height: 25%;
+	background-color: #3F51B5;
+	padding: 5px;
+	text-decoration: none;
+}
+
+.task-name {
+	margin: 10px;
+	top: 0px;
+	font-family: "Calibri", Verdana;
+	color: #666;
+	text-align: center;
+	text-decoration: none;
+}
+
+.ribbon-wrapper {
+    width: 85px;
+    height: 85px;
+    overflow: hidden;
+    position: absolute;
+    top: -8px;
+    left: -7px;
+}
+
+.ribbon{
+    font: bold 15px Arial;
+		text-transform: capitalize;
+    text-align: center;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(-45deg);
+    position: relative;
+    padding: 7px 0;
+    left: -29px;
+    top: 16px;
+    width: 120px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.ribbon:before, .ribbon:after{
+	content: "";
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	position: absolute;
+	bottom: -5px;
+}
+
+.ribbon:before {
+    left: 0;
+}
+
+.ribbon:after {
+    right: 0;
+}
+
+.new {
+  color: #e3f2fd;
+  background-color: #2196f3;
+}
+
+.new:before, .new:after {
+    border-top: 5px solid #0d47a1;
+}
+
+.doing {
+    color: #fffde7;
+    background-color: #fbc02d;
+}
+
+.doing:before, .doing:after {
+    border-top: 5px solid #f57f17;
+}
+
+.testing {
+    color: #fbe9e7;
+    background-color: #ff5722;
+}
+
+.testing:before, .testing:after {
+    border-top: 5px solid #bf360c;
+}
+
+.done {
+    color: #e8f5e9;
+    background-color: #4caf50;
+}
+
+.done:before, .done:after {
+    border-top: 5px solid #1b5e20;
+}
