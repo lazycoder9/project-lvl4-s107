@@ -26,3 +26,17 @@ mixin select(f, property, users, labelName, options = { as: 'text' })
 mixin button(f, type = 'submit', value)
   .form-group
     input(class='btn' type=`${type}` value=`${value}`)
+
+mixin taskCard(task)
+  .col-lg-4.col-sm-6.col-12.mb-5
+    a(href='/tasks/' + task.id)
+      .task
+        .ribbon-wrapper
+          .ribbon(class=task.status)= task.status
+        h1.task-name= task.name
+        .task-creator
+          h6 Created by:
+          h6= task.creator
+        .task-assignedTo
+          h6 Assigned To:
+          h6= task.assignedTo

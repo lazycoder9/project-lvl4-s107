@@ -1,7 +1,5 @@
 extends /layouts/application.pug
 
-
-
 block content
   +formFor(f, { url: urlFor('tasks'), method: 'post' })
     +input(f, 'name', 'Name')
@@ -14,4 +12,5 @@ block content
         .form-control-feedback= f.errors[property].map(({ message }) => message).join('. ')
     +input(f, 'Tags', 'Tags')
     +select(f, 'assignedToId', users)
-    +button(f, 'submit', 'Create task')
+    .form-group
+      button(class='btn btn-primary' type='submit') Create new task

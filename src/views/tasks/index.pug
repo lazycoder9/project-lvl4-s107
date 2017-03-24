@@ -1,17 +1,19 @@
 extends /layouts/application.pug
 
 block content
-  .container
-    a.btn.btn-info(href=urlFor('newTask') role=button) Create new task
+  .container.mb-3
+    a.btn.btn-primary(href=urlFor('newTask') role=button) Create new task
 
-
+  .container.mb-3
     form.form-inline(action=urlFor('tasks'))
-      .form-group
+      .form-group.mr-2
+        label.mr-2 Category:
         select(name='category' class='form-control' value='category')
           option All
           option(value='creatorId') Created
           option(value='assignedToId') Assigned to
-      .form-group
+      .form-group.mr-2
+        label.mr-2 Status:
         select(name='status' class='form-control' value='status')
           option All
           each status in statuses
@@ -19,32 +21,9 @@ block content
       .form-group
         button(class='btn btn-primary' type='submit') Search
 
-  table.table.table-stripped
-    thead
-      tr
-        th ID
-        th Name
-        th Creator
-        th Assigned To
-        th Status
-        th Action
-    tbody
-      if tasks
-        each task in tasks
-          tr
-            td= task.id
-            td= task.name
-            td= task.creator
-            td= task.assignedTo
-            td= task.status
-            td
-              ul.list-inline
-                li
-                  a(href='/tasks/' + task.id)
-                    span.glyphicon.glyphicon-eye-open(aria-hidden='true')
-                li
-                  a(href='#')
-                    span.glyphicon.glyphicon-edit(aria-hidden='true')
-                li
-                  a(href='#')
-                    span.glyphicon.glyphicon-trash(aria-hidden='true')
+  .row
+    .col-12
+      .row
+        if tasks
+          each task in tasks
+              +taskCard(task)

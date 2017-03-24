@@ -44,11 +44,6 @@ block content
                     li
                       a(href=`/tag/${tag.id}`)= tag.name
 
-  form(action=`/task/${task.id}` method='post')
-    .form-group
-      input(type='hidden' name='_method' value='DELETE')
-      button(class='btn btn-danger') Delete task
-
   +formFor(f, { url: '/comments/' + task.id, method: 'post' })
     +input(f, 'content', 'Comment')
     .form-group
@@ -57,7 +52,7 @@ block content
   table.table.table-stripped
     thead
       tr
-        th content
+        th Content
         th Author
         th Date
     tbody

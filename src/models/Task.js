@@ -11,6 +11,21 @@ export default connect => connect.define("Task", {
   StatusId: {
     type: Sequelize.INTEGER,
     defaultValue: 1,
+    validate: {
+      max: 4,
+    },
+  },
+  creatorId: {
+    type: Sequelize.INTEGER,
+    validate: {
+      notEmpty: true,
+    },
+  },
+  assignedToId: {
+    type: Sequelize.INTEGER,
+    validate: {
+      notEmpty: true,
+    },
   },
 }, {
   getterMethods: {
