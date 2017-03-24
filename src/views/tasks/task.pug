@@ -41,7 +41,7 @@ block content
               if tags
                 ul.list-inline
                   each tag in tags
-                    li
+                    li.list-inline-item
                       a(href=`/tag/${tag.id}`)= tag.name
 
   +formFor(f, { url: '/comments/' + task.id, method: 'post' })
