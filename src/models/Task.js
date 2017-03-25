@@ -20,12 +20,14 @@ export default connect => connect.define("Task", {
     validate: {
       notEmpty: true,
     },
+    allowNull: false,
   },
   assignedToId: {
     type: Sequelize.INTEGER,
     validate: {
       notEmpty: true,
     },
+    allowNull: false,
   },
 }, {
   getterMethods: {
