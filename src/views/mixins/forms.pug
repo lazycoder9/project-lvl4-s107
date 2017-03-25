@@ -34,9 +34,14 @@ mixin taskCard(task)
         .ribbon-wrapper
           .ribbon(class=task.status)= task.status
         h1.task-name= task.name
-        .task-creator
-          h6 Created by:
-          h6= task.creator
-        .task-assignedTo
-          h6 Assigned To:
-          h6= task.assignedTo
+        .task-creator(class=`${task.status}-creator`)
+          h6= `Created by: ${task.creator}`
+        .task-assignedTo(class=`${task.status}-assignedTo`)
+          h6= `Assigned To: ${task.assignedTo}`
+
+mixin userCard(user)
+  .col-lg-3.col-md-4.col-sm-6.col-12.mb-3
+    a(href=`/user/${user.id}`)
+      .user
+        .user-name= user.fullName
+        .user-email= user.email

@@ -2,4 +2,20 @@ extends /layouts/application.pug
 
 block content
   .container
-    h1 Welcome to Lazy Task Manager!
+    .row.mb-5
+      .col-12
+        h1.welcome Welcome to Lazy Task Manager!
+  if !isSignedIn()
+    .container.welcome
+      form.form-signin
+        .row
+          .col-3
+          .col-6
+            a.btn.btn-lg.btn-block.btn-secondary(href=urlFor('newSession') align='center') Log in
+          .col-3
+        h3.mt-3.mb-3 - or -
+        .row
+          .col-3
+          .col-6
+            a.btn.btn-lg.btn-block.btn-success(href=urlFor('newUser')) Register
+          .col-3

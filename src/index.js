@@ -50,12 +50,6 @@ export default () => {
   addRoutes(router, container);
   app.use(router.allowedMethods());
   app.use(router.routes());
-  app.use(async (ctx) => {
-    if (ctx.status !== 404) {
-      return;
-    }
-    ctx.redirect('/not_found');
-  });
 
   const pug = new Pug({
     viewPath: path.join(__dirname, 'views'),

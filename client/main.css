@@ -1,3 +1,9 @@
+.welcome {
+	text-align: center;
+	margin: 10px;
+	color: #222;
+}
+
 .btn.btn-primary {
 	color: #e3f2fd;
 	background-color: #2196f3;
@@ -7,6 +13,44 @@
 
 a:hover {
 	text-decoration: none;
+}
+
+.user {
+	height: 75px;
+	margin: 10px;
+	position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+	transition: all .2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.24), 0 2px 4px rgba(0,0,0,0.36);
+}
+
+.user:hover {
+	transform: scale(1.03);
+}
+
+.user-name {
+	margin: 7px;
+	position: absolute;
+	font-size: 24px;
+	color: #444;
+	right: 0;
+	top: 0;
+}
+
+.user-email {
+	position: absolute;
+	font-size: 14px;
+	font-style: italic;
+	margin: 7px;
+	color: #888;
+	right: 0;
+	bottom: 0;
 }
 
 .task {
@@ -37,25 +81,59 @@ a:hover {
 .task-creator {
 	position: absolute;
 	color: #fff;
-	left: 0;
-	bottom: 0;
-	width: 50%;
-	height: 25%;
-	background-color: #673AB7;
+	left: -5px;
+	bottom: 53px;
+	width: 90%;
+	height: 18%;
 	padding: 5px;
 	text-decoration: none;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.24), 0 1px 3px rgba(0,0,0,0.36);
+	text-align: right center;
 }
 
 .task-assignedTo {
 	position: absolute;
-	right: 0;
+	right: -5px;
 	color: #fff;
-	bottom: 0;
-	width: 50%;
-	height: 25%;
-	background-color: #3F51B5;
+	bottom: 10px;
+	width: 90%;
+	height: 18%;
 	padding: 5px;
 	text-decoration: none;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.24), 0 1px 3px rgba(0,0,0,0.36);
+	text-align: left center;
+}
+
+.new-creator {
+	background-color: #42A5F5;
+}
+
+.new-assignedTo {
+	background-color: #1E88E5;
+}
+
+.doing-creator {
+	background-color: #FDD835;
+}
+
+.doing-assignedTo {
+	background-color: #F9A825;
+}
+
+.testing-creator {
+	background-color: #FF7043;
+}
+
+.testing-assignedTo {
+	background-color: #F4511E;
+}
+
+.done-creator {
+	background-color: #66BB6A;
+}
+
+.done-assignedTo {
+	background-color: #43A047;
 }
 
 .task-name {

@@ -7,7 +7,9 @@ export default connect => connect.define("User", {
     unique: true,
     validate: {
       isEmail: true,
+      notEmpty: true,
     },
+    allowNull: false,
   },
   passwordDigest: {
     type: Sequelize.STRING,
@@ -18,10 +20,12 @@ export default connect => connect.define("User", {
   firstName: {
     type: Sequelize.STRING,
     field: 'first_name',
+    len: [3, +Infinity],
   },
   lastName: {
     type: Sequelize.STRING,
     field: 'last_name',
+    len: [3, +Infinity],
   },
   password: {
     type: Sequelize.VIRTUAL,

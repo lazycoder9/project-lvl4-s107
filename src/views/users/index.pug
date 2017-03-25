@@ -1,18 +1,12 @@
 extends /layouts/application.pug
 
 block content
-  table.table.table-stripped
-    thead
-      tr
-        th Full Name
-        th Email
-        th Created At
-    tbody
-      if users
-        each user in users
-          tr
-            td= user.fullName
-            td= user.email
-            td= user.createdAt
-            td
-              a(href=`/user/${user.id}`) Profile
+  .container.mb-3
+    h2 Users list
+  .container
+    .row
+      .col-12
+        .row
+          if users
+            each user in users
+              +userCard(user)
