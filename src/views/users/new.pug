@@ -1,13 +1,6 @@
 extends /layouts/application.pug
 
 block content
-  +formFor(f, { url: urlFor('users'), method: 'post' })
-    +input(f, 'email', 'Email:')
-    +input(f, 'firstName', 'First name:')
-    +input(f, 'lastName', 'Last name:')
-    +input(f, 'password', 'Password:', { as: 'password' })
-    +button(f, 'submit', 'Sign up')
-
   .container
     .row
       .col-4
