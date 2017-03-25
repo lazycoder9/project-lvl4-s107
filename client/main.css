@@ -82,13 +82,13 @@ a:hover {
 	position: absolute;
 	color: #fff;
 	left: -5px;
-	bottom: 53px;
+	bottom: 43px;
 	width: 90%;
-	height: 18%;
+	height: 13%;
 	padding: 5px;
 	text-decoration: none;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.24), 0 1px 3px rgba(0,0,0,0.36);
-	text-align: right center;
+	vertical-align: middle;
 }
 
 .task-assignedTo {
@@ -97,11 +97,11 @@ a:hover {
 	color: #fff;
 	bottom: 10px;
 	width: 90%;
-	height: 18%;
+	height: 13%;
 	padding: 5px;
 	text-decoration: none;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.24), 0 1px 3px rgba(0,0,0,0.36);
-	text-align: left center;
+	vertical-align: middle;
 }
 
 .new-creator {
