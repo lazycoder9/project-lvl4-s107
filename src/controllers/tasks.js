@@ -1,4 +1,5 @@
 import url from 'url';
+import rollbar from 'rollbar';
 import buildFormObj from '../lib/formObjectBuilder';
 import getDataFromTask from '../lib/getDataFromTask';
 
@@ -19,9 +20,7 @@ export default (router, { Task, User, Comment, Status, Tag }) => {
     .get('tasks', '/tasks', async (ctx) => {
       if (ctx.session.userId) {
         const { query } = url.parse(ctx.request.url, true);
-        console.log(query);
         const search = generateSearchQuery(query, ctx);
-        console.log(search);
         const rawTasks = await Task.findAll({ where: search });
         const tasks = await Promise.all(rawTasks.map(async (task) => {
           const { data } = await getDataFromTask(task);
@@ -58,7 +57,6 @@ export default (router, { Task, User, Comment, Status, Tag }) => {
     })
     .post('tasks', '/tasks', async (ctx) => {
       const form = ctx.request.body.form;
-      console.log(form);
       const users = await User.findAll();
       const tags = form.Tags.split(' ');
       form.creatorId = ctx.session.userId;
@@ -70,6 +68,7 @@ export default (router, { Task, User, Comment, Status, Tag }) => {
         ctx.flash.set('Task has been created');
         ctx.redirect(router.url('tasks'));
       } catch (e) {
+        rollbar.handleError(e);
         ctx.render('tasks/new', { f: buildFormObj(task, e), users });
       }
     })

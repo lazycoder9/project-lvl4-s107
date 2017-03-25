@@ -1,4 +1,5 @@
 import buildFormObj from '../lib/formObjectBuilder';
+import rollbar from 'rollbar';
 
 export default (router, { User, Task }) => {
   router
@@ -22,6 +23,7 @@ export default (router, { User, Task }) => {
         ctx.flash.set('User has been created');
         ctx.redirect(router.url('root'));
       } catch (e) {
+        rollbar.handleError(e);
         ctx.render('users/new', { f: buildFormObj(user, e) });
       }
     })
