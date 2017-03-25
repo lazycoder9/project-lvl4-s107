@@ -22,6 +22,10 @@ export default () => ({
         test: /\.css$/,
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
+      {
+        test: /\.ico$/,
+        use: ['style-loader'],
+      },
     ],
   },
   plugins: [
