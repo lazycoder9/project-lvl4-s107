@@ -11,7 +11,7 @@ export default (router, { User, Task }) => {
       const user = await User.findById(Number(ctx.params.id));
       ctx.render('users/profile', { user, signedId: ctx.session.userId });
     })
-    .get('newUser', '/users/new', (ctx) => {
+    .get('newUser', '/user/new', (ctx) => {
       const user = User.build();
       ctx.render('users/new', { f: buildFormObj(user) });
     })

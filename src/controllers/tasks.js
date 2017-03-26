@@ -1,28 +1,16 @@
 import url from 'url';
 import rollbar from 'rollbar';
 import buildFormObj from '../lib/formObjectBuilder';
-import getDataFromTask from '../lib/getDataFromTask';
-
-const generateSearchQuery = (params, ctx) => {
-  const where = {};
-  if (params.category && params.category !== 'All') {
-    where[params.category] = ctx.session.userId;
-  }
-  if (params.status && params.status !== 'All') {
-    where["StatusId"] = Number(params.status);
-  }
-
-  return where;
-};
+import { getDataFromRaw, generateSearchQuery } from '../lib/utils';
 
 export default (router, { Task, User, Comment, Status, Tag }) => {
   router
     .get('tasks', '/tasks', async (ctx) => {
       const { query } = url.parse(ctx.request.url, true);
-      const search = generateSearchQuery(query, ctx);
-      const rawTasks = await Task.findAll({ where: search });
+      const where = generateSearchQuery(query, ctx);
+      const rawTasks = await Task.findAll({ where });
       const tasks = await Promise.all(rawTasks.map(async (task) => {
-        const { data } = await getDataFromTask(task);
+        const { data } = await getDataFromRaw(task);
         return data;
       }));
       const statuses = await Status.findAll();

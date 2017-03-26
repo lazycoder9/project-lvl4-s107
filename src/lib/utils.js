@@ -1,4 +1,4 @@
-export default async (task) => {
+export const getDataFromRaw = async (task) => {
   const tags = await task.getTags();
   const comments = await task.getComments({
     order: '"createdAt" DESC',
@@ -16,4 +16,16 @@ export default async (task) => {
   };
 
   return { data, tags, comments };
+};
+
+export const generateSearchQuery = (params, ctx) => {
+  const where = {};
+  if (params.category && params.category !== 'All') {
+    where[params.category] = ctx.session.userId;
+  }
+  if (params.status && params.status !== 'All') {
+    where["StatusId"] = Number(params.status);
+  }
+
+  return where;
 };
