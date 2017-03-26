@@ -5,7 +5,7 @@ block content
     .row
       .col-4
       .col-4
-        form.form-signin(action=urlFor('users'), method='post')
+        form.form-signin(action='/user/new', method='post')
           h2.form-signin-heading Please fill the blanks
           label.sr-only(for='inputEmail') Email address
           input#inputEmail.form-control.mb-2(name='form[email]' type='email', placeholder='Email address', required='', autofocus='')

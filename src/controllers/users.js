@@ -15,7 +15,7 @@ export default (router, { User, Task }) => {
       const user = User.build();
       ctx.render('users/new', { f: buildFormObj(user) });
     })
-    .post('users', '/users', async (ctx) => {
+    .post('/user/new', async (ctx) => {
       const form = ctx.request.body.form;
       const user = User.build(form);
       try {

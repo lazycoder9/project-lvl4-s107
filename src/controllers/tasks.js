@@ -23,7 +23,7 @@ export default (router, { Task, User, Comment, Status, Tag }) => {
     })
     .get('task', '/tasks/:id', async (ctx) => {
       const task = await Task.findById(Number(ctx.params.id));
-      const { data, tags, comments } = await getDataFromTask(task);
+      const { data, tags, comments } = await getDataFromRaw(task);
       const comment = Comment.build();
       const statuses = await Status.findAll();
       ctx.render('tasks/task', { task: data, comments, statuses, tags, f: buildFormObj(comment) });
