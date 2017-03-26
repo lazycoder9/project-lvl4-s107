@@ -86,9 +86,9 @@ export default () => {
   };
 
   rollbar.init('e6d974c48e184f71b51b5f5345bb5222');
-  app.use(rollbar.errorHandler('e6d974c48e184f71b51b5f5345bb5222'));
-  app.use(rollbar.handleUnhandledRejections('e6d974c48e184f71b51b5f5345bb5222'));
-  app.use(rollbar.handleUncaughtExceptions('e6d974c48e184f71b51b5f5345bb5222', options));
+  rollbar.errorHandler('e6d974c48e184f71b51b5f5345bb5222');
+  rollbar.handleUnhandledRejections('e6d974c48e184f71b51b5f5345bb5222');
+  rollbar.handleUncaughtExceptions('e6d974c48e184f71b51b5f5345bb5222', options);
 
   return app;
 };
