@@ -15,7 +15,7 @@ block content
             td= user.email
 
   if (user.id == signedId)
-    form(action=`/user/${user.id}` method='post')
+    form(action=`/users/${user.id}` method='post')
       .form-group
         input(type='hidden' name='_method' value='DELETE')
         button(class='btn btn-danger') Delete profile

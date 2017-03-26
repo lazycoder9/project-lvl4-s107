@@ -12,17 +12,9 @@ export default async () => {
   await models.Status.sync({ force: true });
   await models.TaskTag.sync({ force: true });
   await models.Status.bulkCreate([
-    {
-      name: 'new',
-    },
-    {
-      name: 'doing',
-    },
-    {
-      name: 'testing',
-    },
-    {
-      name: 'done',
-    },
+    { name: 'new' },
+    { name: 'doing' },
+    { name: 'testing' },
+    { name: 'done' },
   ]);
 };

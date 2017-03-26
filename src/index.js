@@ -44,10 +44,21 @@ export default () => {
   app.use(middleware({
     config: getWebpackConfig(),
   }));
-
   app.use(koaLogger());
+
   const router = new Router();
+  const isAuthenticated = async (ctx, next) => {
+    if (ctx.session.userId) {
+      await next();
+    } else {
+      ctx.flash.set('You are not logged in');
+      ctx.redirect(router.url('root'));
+    }
+  };
+  router.use('/users', isAuthenticated);
+  router.use('/tasks', isAuthenticated);
   addRoutes(router, container);
+
   app.use(router.allowedMethods());
   app.use(router.routes());
   app.use(async (ctx) => {
@@ -73,12 +84,11 @@ export default () => {
   const options = {
     exitOnUncaughtException: true,
   };
+
   rollbar.init('e6d974c48e184f71b51b5f5345bb5222');
-  rollbar.handleUnhandledRejections('e6d974c48e184f71b51b5f5345bb5222');
-  rollbar.handleUncaughtExceptions('e6d974c48e184f71b51b5f5345bb5222', options);
-
-
-  app.use(rollbar.errorHandler(''));
+  app.use(rollbar.errorHandler('e6d974c48e184f71b51b5f5345bb5222'));
+  app.use(rollbar.handleUnhandledRejections('e6d974c48e184f71b51b5f5345bb5222'));
+  app.use(rollbar.handleUncaughtExceptions('e6d974c48e184f71b51b5f5345bb5222', options));
 
   return app;
 };

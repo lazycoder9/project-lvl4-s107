@@ -26,8 +26,3 @@ gulp.task('init', async () => {
 gulp.task('server', (cb) => {
   getServer().listen(process.env.PORT || 3000, cb);
 });
-
-gulp.task('watch', () => {
-  console.log(__dirname);
-  gulp.watch(__dirname + '/src/*.js', ['server']);
-});
