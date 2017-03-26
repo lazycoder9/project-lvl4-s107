@@ -2,24 +2,28 @@ extends /layouts/application.pug
 
 block content
   .container.mb-3
-    a.btn.btn-primary(href=urlFor('newTask') role=button) Create new task
+    a.btn.btn-primary(href=urlFor('newTask') role=button)
+      i.mr-1.fa.fa-pencil
+      | Create new task
 
-  .container.mb-3
+  .container.mb-5
     form.form-inline(action=urlFor('tasks'))
-      .form-group.mr-2
+      .form-group.mr-4
         label.mr-2 Category:
         select(name='category' class='form-control' value='category')
           option All
           option(value='creatorId') Created
           option(value='assignedToId') Assigned to
-      .form-group.mr-2
+      .form-group.mr-4
         label.mr-2 Status:
         select(name='status' class='form-control' value='status')
           option All
           each status in statuses
             option(value= status.id)= status.name
       .form-group
-        button(class='btn btn-primary' type='submit') Search
+        button(class='btn btn-primary' type='submit')
+          i.mr-1.fa.fa-search
+          | Search
 
   .row
     .col-12

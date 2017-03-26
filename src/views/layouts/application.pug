@@ -7,22 +7,31 @@ html(lang="en")
     script(src='/assets/vendor.js')
     script(src='/assets/application.js')
     link(rel='stylesheet' href='/css/main.css')
+    script(src='https://use.fontawesome.com/9e77b4a3f0.js')
+    script(src='https://code.jquery.com/jquery-3.1.1.slim.min.js', integrity='sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n', crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js', integrity='sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb', crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js', integrity='sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn', crossorigin='anonymous')
   body
-    nav.navbar.navbar-toggleable-md.navbar-light.bg-faded
-      button.navbar-toggler.navbar-toggler-right
-        span.navbar-toggler-icon
-      h2.navbar-brand LTM
-      .collapse.navbar-collapse
-        ul.navbar-nav.mr-auto
-          if isSignedIn()
-            li.nav-item.active
-              a.nav-link(href=urlFor('users')) Users
-            li.nav-item.active
-              a.nav-link(href=urlFor('tasks')) Tasks
-        ul.navbar-nav
-          if isSignedIn()
+    nav.navbar.navbar-light.navbar-toggleable-sm.mb-4
+      button.navbar-toggler.navbar-toggler-right(aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation', data-target='#navbarResponsive', data-toggle='collapse', type='button')
+        i.fa.fa-bars
+      #navbarResponsive.navbar-collapse.collapse
+        if isSignedIn()
+          ul.navbar-nav.mr-auto
+            li.nav-item.mr-4
+              a.nav-link.active(href='/users')
+                i.mr-1.fa.fa-user-circle-o
+                | Users
             li.nav-item
-              a.nav-link(href=urlFor('session') data-method='delete' rel='nofollow') Sign Out
+              a.nav-link.active(href='/tasks')
+                i.mr-1.fa.fa-tasks
+                | Tasks
+          ul.navbar-nav
+            li.nav-item
+              a.nav-link.active(href='/users' data-method='delete')
+                i.mr-1.fa.fa-sign-out
+                | Sign Out
+
     .container
       - const msg = flash.get()
       if msg

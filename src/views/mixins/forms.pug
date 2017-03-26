@@ -43,5 +43,6 @@ mixin userCard(user)
   .col-lg-3.col-md-4.col-sm-6.col-12.mb-3
     a(href=`/users/${user.id}`)
       .user
+        i.user-icon.mr-1.fa.fa-user-circle.fa-3x
         .user-name= user.fullName
         .user-email= user.email

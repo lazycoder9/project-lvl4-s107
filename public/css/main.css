@@ -1,3 +1,7 @@
+a {
+	text-decoration: none;
+}
+
 .welcome {
 	text-align: center;
 	margin: 10px;
@@ -41,6 +45,13 @@ a:hover {
 	color: #444;
 	right: 0;
 	top: 0;
+}
+
+.user-icon {
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	vertical-align: middle;
 }
 
 .user-email {
