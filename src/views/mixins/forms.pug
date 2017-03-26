@@ -41,7 +41,7 @@ mixin taskCard(task)
 
 mixin userCard(user)
   .col-lg-3.col-md-4.col-sm-6.col-12.mb-3
-    a(href=`/user/${user.id}`)
+    a(href=`/users/${user.id}`)
       .user
         .user-name= user.fullName
         .user-email= user.email
